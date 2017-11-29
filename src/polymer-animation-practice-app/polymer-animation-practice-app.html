@@ -4,10 +4,10 @@
   <template>
     <style>
       :host {
-        display: block;
+        display: inline-block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <h2 on-click="show">Hello</h2>
   </template>
 
   <script>
@@ -16,14 +16,36 @@
      * @polymer
      */
     class PolymerAnimationPracticeApp extends Polymer.Element {
-      static get is() { return 'polymer-animation-practice-app'; }
+      static get is() {
+        return 'polymer-animation-practice-app';
+      }
+
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'polymer-animation-practice-app'
+          opened: {
+            type: Boolean,
+            value: true
           }
         };
+      }
+
+      show() {
+        this.opened = true;
+        this.style.display = 'inline-block';
+        this.animate([
+            {transform: 'translateY(0)', opacity: 1, easing: 'ease-out'},
+            {transform: 'translateY(100%)', opacity: 1, easing: 'ease-in'},
+            {transform: 'translateY(100%)', opacity: 0}
+          ],
+          {
+            duration: 1500,
+          });
+      }
+
+      hide() {
+        this.opened = false;
+        // this.style.display = 'none';
+        this.playAnimation('exit');
       }
     }
 
