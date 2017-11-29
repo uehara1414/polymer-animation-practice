@@ -17,7 +17,7 @@
 
     </style>
 
-    <paper-card class="main" on-click="drop">
+    <paper-card class="main" on-click="drop" animated-shadow="true" elevation=1 on-mouseover="over" on-mouseout="out" id="card">
       <h3>DropCard</h3>
       <hr>
       <p>
@@ -54,6 +54,14 @@
           this.style.transform = 'translateY(0%)';
           this.style.opacity = 0;
         })
+      }
+
+      over(e) {
+        this.$.card.elevation=3;
+      }
+
+      out(e) {
+        this.$.card.elevation=1;
       }
 
     }
