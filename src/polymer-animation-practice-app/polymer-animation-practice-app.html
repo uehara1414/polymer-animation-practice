@@ -32,7 +32,7 @@
       show() {
         this.opened = true;
         this.style.display = 'inline-block';
-        this.animate([
+        const animation = this.animate([
             {transform: 'translateY(0)', opacity: 1, easing: 'ease-out'},
             {transform: 'translateY(100%)', opacity: 1, easing: 'ease-in'},
             {transform: 'translateY(100%)', opacity: 0}
@@ -40,6 +40,10 @@
           {
             duration: 1500,
           });
+        animation.finished.then(() => {
+          this.style.transform = 'translateY(100%)';
+          this.style.opacity = 0;
+        })
       }
 
       hide() {
